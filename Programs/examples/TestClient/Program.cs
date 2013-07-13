@@ -135,6 +135,8 @@ namespace OpenMetaverse.TestClient
                 return;
             }
 
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = OpenMetaverse.Http.TrustAllCertificatePolicy.TrustAllCertificateHandler;
+
             foreach (LoginDetails a in accounts)
             {
                 a.GroupCommands = groupCommands;

@@ -41,8 +41,10 @@ namespace OpenMetaverse.Assets
         /// <summary>A <seealso cref="ManagedImage"/> object containing image data</summary>
         public ManagedImage Image;
 
+#if !NO_UNSAFE
         /// <summary></summary>
         public OpenJPEG.J2KLayerInfo[] LayerInfo;
+#endif
 
         /// <summary></summary>
         public int Components;
@@ -81,7 +83,9 @@ namespace OpenMetaverse.Assets
         /// </summary>
         public override void Encode()
         {
+#if !NO_UNSAFE
             AssetData = OpenJPEG.Encode(Image);
+#endif
         }
 
         /// <summary>
@@ -91,6 +95,7 @@ namespace OpenMetaverse.Assets
         /// <returns>True if the decoding was successful, otherwise false</returns>
         public override bool Decode()
         {
+#if !NO_UNSAFE
             if (AssetData != null && AssetData.Length > 0)
             {
                 this.Components = 0;
@@ -109,7 +114,7 @@ namespace OpenMetaverse.Assets
                     return true;
                 }
             }
-
+#endif
             return false;
         }
 
@@ -120,7 +125,11 @@ namespace OpenMetaverse.Assets
         /// <returns></returns>
         public bool DecodeLayerBoundaries()
         {
+#if !NO_UNSAFE
             return OpenJPEG.DecodeLayerBoundaries(AssetData, out LayerInfo, out Components);
+#else
+            return false;
+#endif
         }
     }
 }

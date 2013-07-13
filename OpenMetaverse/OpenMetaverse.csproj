@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3561F228-05C0-4DA2-839C-7732E36A3FF7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenMetaverse</RootNamespace>
+    <AssemblyName>OpenMetaverse</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgentManager.cs" />
+    <Compile Include="AgentManagerCamera.cs" />
+    <Compile Include="AgentManagerMovement.cs" />
+    <Compile Include="AgentThrottle.cs" />
+    <Compile Include="Animations.cs" />
+    <Compile Include="AppearanceManager.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AssetCache.cs" />
+    <Compile Include="AssetManager.cs" />
+    <Compile Include="Assets\Archiving\ArchiveConstants.cs" />
+    <Compile Include="Assets\Archiving\AssetsArchiver.cs" />
+    <Compile Include="Assets\Archiving\OarFile.cs" />
+    <Compile Include="Assets\Archiving\RegionSettings.cs" />
+    <Compile Include="Assets\Archiving\TarArchiveReader.cs" />
+    <Compile Include="Assets\Archiving\TarArchiveWriter.cs" />
+    <Compile Include="Assets\Asset.cs" />
+    <Compile Include="Assets\AssetTypes\AssetAnimation.cs" />
+    <Compile Include="Assets\AssetTypes\AssetBodypart.cs" />
+    <Compile Include="Assets\AssetTypes\AssetCallingCard.cs" />
+    <Compile Include="Assets\AssetTypes\AssetClothing.cs" />
+    <Compile Include="Assets\AssetTypes\AssetGesture.cs" />
+    <Compile Include="Assets\AssetTypes\AssetLandmark.cs" />
+    <Compile Include="Assets\AssetTypes\AssetMesh.cs" />
+    <Compile Include="Assets\AssetTypes\AssetMutable.cs" />
+    <Compile Include="Assets\AssetTypes\AssetNotecard.cs" />
+    <Compile Include="Assets\AssetTypes\AssetPrim.cs" />
+    <Compile Include="Assets\AssetTypes\AssetScriptBinary.cs" />
+    <Compile Include="Assets\AssetTypes\AssetScriptText.cs" />
+    <Compile Include="Assets\AssetTypes\AssetSound.cs" />
+    <Compile Include="Assets\AssetTypes\AssetTexture.cs" />
+    <Compile Include="Assets\AssetTypes\AssetWearable.cs" />
+    <Compile Include="Avatar.cs" />
+    <Compile Include="AvatarManager.cs" />
+    <Compile Include="BitPack.cs" />
+    <Compile Include="BVHDecoder.cs" />
+    <Compile Include="Capabilities\CapsBase.cs" />
+    <Compile Include="Capabilities\CapsClient.cs" />
+    <Compile Include="Capabilities\EventQueueClient.cs" />
+    <Compile Include="Caps.cs" />
+    <Compile Include="CapsToPacket.cs" />
+    <Compile Include="CoordinateFrame.cs" />
+    <Compile Include="DirectoryManager.cs" />
+    <Compile Include="DownloadManager.cs" />
+    <Compile Include="EstateTools.cs" />
+    <Compile Include="EventDictionary.cs" />
+    <Compile Include="FriendsManager.cs" />
+    <Compile Include="GridClient.cs" />
+    <Compile Include="GridManager.cs" />
+    <Compile Include="GroupManager.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="Imaging\BakeLayer.cs" />
+    <Compile Include="Imaging\ManagedImage.cs" />
+    <Compile Include="Imaging\OpenJPEG.cs" />
+    <Compile Include="Imaging\TGALoader.cs" />
+    <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\IRendering.cs" />
+    <Compile Include="InternalDictionary.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="InventoryManager.cs" />
+    <Compile Include="InventoryNode.cs" />
+    <Compile Include="InventoryNodeDictionary.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Login.cs" />
+    <Compile Include="Messages\LindenMessages.cs" />
+    <Compile Include="Messages\MessageEventDecoder.cs" />
+    <Compile Include="Messages\Messages.cs" />
+    <Compile Include="NameValue.cs" />
+    <Compile Include="NetworkManager.cs" />
+    <Compile Include="ObjectManager.cs" />
+    <Compile Include="ObjectPool.cs" />
+    <Compile Include="ObjectPoolBase.cs" />
+    <Compile Include="ObservableDictionary.cs" />
+    <Compile Include="PacketDecoder.cs" />
+    <Compile Include="ParcelManager.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Primitives\ObjectMedia.cs" />
+    <Compile Include="Primitives\ParticleSystem.cs" />
+    <Compile Include="Primitives\Primitive.cs" />
+    <Compile Include="Primitives\TextureEntry.cs" />
+    <Compile Include="ProtocolManager.cs" />
+    <Compile Include="Rendering\LindenMesh.cs" />
+    <Compile Include="Rendering\Rendering.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Simulator.cs" />
+    <Compile Include="SoundManager.cs" />
+    <Compile Include="Sounds.cs" />
+    <Compile Include="TerrainCompressor.cs" />
+    <Compile Include="TerrainManager.cs" />
+    <Compile Include="TexturePipeline.cs" />
+    <Compile Include="ThreadUtil.cs" />
+    <Compile Include="UDPBase.cs" />
+    <Compile Include="UtilizationStatistics.cs" />
+    <Compile Include="Voice\TCPPipe.cs" />
+    <Compile Include="Voice\VoiceAccount.cs" />
+    <Compile Include="Voice\VoiceAux.cs" />
+    <Compile Include="Voice\VoiceConnector.cs" />
+    <Compile Include="Voice\VoiceControl.cs" />
+    <Compile Include="Voice\VoiceDefinitions.cs" />
+    <Compile Include="Voice\VoiceGateway.cs" />
+    <Compile Include="Voice\VoiceParticipant.cs" />
+    <Compile Include="Voice\VoiceSession.cs" />
+    <Compile Include="_Packets_.cs" />
+    <Compile Include="_VisualParam_.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.XML" />
+    <Reference Include="zlib.net">
+      <HintPath>..\packages\zlib.net.1.0.4.0\lib\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenMetaverse.StructuredData\OpenMetaverse.StructuredData.csproj">
+      <Project>{bc11d338-e7e2-473d-a327-f9822746e7a6}</Project>
+      <Name>OpenMetaverse.StructuredData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenMetaverseTypes\OpenMetaverseTypes.csproj">
+      <Project>{c7b93c31-14b2-44b8-a953-628cab0d448b}</Project>
+      <Name>OpenMetaverseTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlRpcCS\XmlRpcCS.csproj">
+      <Project>{e4fec403-6407-49e3-bfc4-e68d19c26e3c}</Project>
+      <Name>XmlRpcCS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

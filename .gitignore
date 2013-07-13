@@ -1,9 +1,12 @@
-compile.bat
-*.csproj
 *.user
-*.sln
 *.cache
 
 [Oo]bj/
 [Bb]in/
 
+
+*.suo
+packages/
+*.sdf
+*.opensdf
+Debug/
