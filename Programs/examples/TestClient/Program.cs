@@ -2,11 +2,60 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using CommandLine.Utility;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace OpenMetaverse.TestClient
 {
     public class CommandLineArgumentsException : Exception
     {
+    }
+
+    public class TrustLindenLabCertificatePolicy : ICertificatePolicy
+    {
+        public bool CheckValidationResult(ServicePoint sp, X509Certificate cert, WebRequest req, int problem)
+        {
+            return false;
+        }
+
+        public static byte[] lindenlabcacert;
+        public static X509ChainPolicy policy;
+
+        private static bool CheckChain(X509Certificate2 cert)
+        {
+            if (cert == null || policy == null) return false;
+            X509Chain chain = new X509Chain();
+
+            chain.ChainPolicy = policy;
+
+            chain.Build(cert);
+
+            if (chain.ChainStatus.Length == 1 && chain.ChainStatus[0].Status == X509ChainStatusFlags.UntrustedRoot)
+            {
+                var root = chain.ChainElements[chain.ChainElements.Count - 1].Certificate;
+
+                return root.Thumbprint == "FA1AF1C586013830CD0E67F9B07EF59152C139B5";
+            }
+            if (chain.ChainStatus.Length == 0) return true;
+
+            return false;
+        }
+
+        public static bool TestLindenLabCertificateAuthorityHandler(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            if (sslPolicyErrors == SslPolicyErrors.None)
+            {
+                return true;
+            }
+
+            if (sslPolicyErrors == SslPolicyErrors.RemoteCertificateChainErrors)
+            {
+                return CheckChain(certificate as X509Certificate2);
+            }
+
+            return false;
+        }
     }
 
     public class Program
@@ -135,7 +184,16 @@ namespace OpenMetaverse.TestClient
                 return;
             }
 
-            System.Net.ServicePointManager.ServerCertificateValidationCallback = OpenMetaverse.Http.TrustAllCertificatePolicy.TrustAllCertificateHandler;
+            using (var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("TestClient.lindenlab.cer"))
+            {
+                TrustLindenLabCertificatePolicy.lindenlabcacert = new byte[stream.Length];
+                stream.Read(TrustLindenLabCertificatePolicy.lindenlabcacert, 0, (int)stream.Length);
+            }
+            TrustLindenLabCertificatePolicy.policy = new X509ChainPolicy();
+            TrustLindenLabCertificatePolicy.policy.RevocationMode = X509RevocationMode.NoCheck;
+            TrustLindenLabCertificatePolicy.policy.VerificationFlags = X509VerificationFlags.AllowUnknownCertificateAuthority;
+            TrustLindenLabCertificatePolicy.policy.ExtraStore.Add(new X509Certificate2(TrustLindenLabCertificatePolicy.lindenlabcacert));
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = TrustLindenLabCertificatePolicy.TestLindenLabCertificateAuthorityHandler;
 
             foreach (LoginDetails a in accounts)
             {

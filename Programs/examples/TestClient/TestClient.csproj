@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\data\lindenlab.cer">
+      <Link>lindenlab.cer</Link>
+    </EmbeddedResource>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
