@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMetaverse", "OpenMetaverse\OpenMetaverse.csproj", "{3561F228-05C0-4DA2-839C-7732E36A3FF7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{89AC992C-5E2C-4E6B-A453-61C1DF446216} = {89AC992C-5E2C-4E6B-A453-61C1DF446216}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMetaverseTypes", "OpenMetaverseTypes\OpenMetaverseTypes.csproj", "{C7B93C31-14B2-44B8-A953-628CAB0D448B}"
 EndProject
